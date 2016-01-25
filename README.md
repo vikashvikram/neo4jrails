@@ -1,28 +1,31 @@
-* `rails new neo4japp -m http://neo4jrb.io/neo4j/neo4j.rb -O`
+# How to set up a typical neo4j based rails app
 
-* `cd neo4japp`
+* `rails new app_name -m http://neo4jrb.io/neo4j/neo4j.rb -O`
+
+* `cd app_name`
 
 * `rake neo4j:install[community-latest]` //installs neo4j-community version
 
-* `rake neo4j:start` or `rake neo4j:start[ENVIRONMENT]` or `neo4j:config[ENVIRONMENT,PORT]`
+* `rake neo4j:start` or `rake neo4j:start[ENVIRONMENT]` or `neo4j:config[ENVIRONMENT,PORT]` //starts neo4j databse server
 
-* `rails g scaffold Person name:string born:integer`
+* `rails g scaffold Person name:string born:integer` // a sample scaffold command
 
-* `rails g scaffold Movie title:string released:integer`
+* `rails s` // to start server. access application on localhost:3000/people
+
+* `rake neo4j:shell[development]` // similar to rails dbconsole
+
+* `rails c` // to access rails console
+
+# How to setup rails app with this repo
+
+* `rake neo4j:install[community-latest]`
+
+* `rake neo4j:start[development]`
 
 * `rails s`
 
-localhost:3000/people => MATCH (n:`Person`) RETURN n
+* You cab populate `db/seeds.rb` to pupolate some data to play around with sample queries given below
 
-app/models/person.rb
-
-uses active node instead of active record to provide ORM
-
-add validations and index
-
-include Neo4j::Timestamps # will give model created_at and updated_at timestamps
-
-make relationships
 
 # sample queries
 
